@@ -29,22 +29,27 @@
     <div class="container">
     <h1>Upload an Image to Analyze Colors</h1>
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required>
+        <input type="file"  id="file-upload" name="image" accept="image/*" required style="display: none;">
+        <label for="file-upload" class="custom-file-upload">Choose File</label>
+        <span id="file-name"></span>
         <button type="submit">Analyze</button>
     </form>
 
-    <div id="popup-message" class="popup hidden">System working to produce top 10 colors, please wait...</div>
-
-                <!--Popup Javascript-->
     <script>
-    document.getElementById('image-form').addEventListener('submit', function() {
-        const popup = document.getElementById('popup-message');
-        popup.classList.remove('hidden');
+        document.addEventListener("DOMContentLoaded", function() {
+            const fileInput = document.getElementById('file-upload');
+            const fileNameDisplay = document.getElementById('file-name');
 
-        setTimeout(function() {
-            popup.classList.add('hidden');
-        }, 5000); // 5000 milliseconds = 5 seconds
-    });
+            fileNameDisplay.textContent = 'No file chosen';
+
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    fileNameDisplay.textContent = fileInput.files[0].name;
+                } else {
+                    fileNameDisplay.textContent = 'No file chosen';
+                }
+            });
+        });
     </script>
 
 
@@ -52,11 +57,11 @@
         <h2>Top 10 Colors</h2>
         <div class="content-container">
             {% if image_url %}
-                <div class="image-preview">
+                <div class="col-md-6 image-preview">
                     <img src="{{ url_for('static', filename='uploads/' + image_url.split('/')[-1]) }}" alt="Uploaded Image">
                 </div>
             {% endif %}
-            <div class="table-container">
+            <div class="col-md-6 table-container">
                 <table>
                     <thead>
                         <tr>
@@ -90,5 +95,6 @@
             <p class="foot-r">Ellie Winer Python </p>
         </div>
     </footer>
+
 </body>
 </html>
