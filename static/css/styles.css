@@ -1,0 +1,171 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-name {
+    font-size: 24px;
+    color: #fff;
+}
+
+.header-date {
+    font-size: 20px;
+    color: #fff;
+}
+
+
+.container {
+    flex: 1;
+    margin-top: 70px;
+    padding: 20px;
+    text-align: center;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.image-preview {
+    flex: 1;
+    padding-right: 10px;
+}
+
+.image-preview img {
+    max-height: 450px;            /* Set maximum height to match table height */
+    width: auto;                  /* Maintain aspect ratio */
+    display: block;               /* Center the image */
+    margin: 0 auto;
+}
+
+.table-container {
+    flex: 1;
+    padding-left: 10px;
+}
+
+
+.upload-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 50%;
+    background-color: #f9f9f9;
+}
+
+.upload-container input[type="file"] {
+    display: block;
+    margin: 0 auto 10px auto;
+    padding: 10px;
+}
+
+.upload-container button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.upload-container button:hover {
+    background-color: #555;
+}
+
+.color-results {
+    margin-top: 20px;
+}
+
+.color-results ul {
+    list-style: none;
+    padding: 0;
+}
+
+.color-results li {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.color-box {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+
+@media (max-width: 768px) {
+    .upload-container {
+        width: 80%;
+    }
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 20px;
+    width: 100%;
+    position: relative;
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
+}
+
+

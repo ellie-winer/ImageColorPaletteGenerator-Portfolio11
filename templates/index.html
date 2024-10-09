@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Analyzer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-container">
+            <p class="header-name">Color Analyzer</p>
+            <p class="header-date">Today's Date: <span id="current-date"></span></p>
+        </div>
+    </nav>
+                <!--Date Javascript-->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var today = new Date();
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var formattedDate = today.toLocaleDateString('en-US', options);
+        document.getElementById('current-date').textContent = formattedDate;
+    });
+    </script>
+
+    <!--Body-->
+    <div class="container">
+    <h1>Upload an Image to Analyze Colors</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    <div id="popup-message" class="popup hidden">System working to produce top 10 colors, please wait...</div>
+
+                <!--Popup Javascript-->
+    <script>
+    document.getElementById('image-form').addEventListener('submit', function() {
+        const popup = document.getElementById('popup-message');
+        popup.classList.remove('hidden');
+
+        setTimeout(function() {
+            popup.classList.add('hidden');
+        }, 5000); // 5000 milliseconds = 5 seconds
+    });
+    </script>
+
+
+    {% if color_info %}
+        <h2>Top 10 Colors</h2>
+        <div class="content-container">
+            {% if image_url %}
+                <div class="image-preview">
+                    <img src="{{ url_for('static', filename='uploads/' + image_url.split('/')[-1]) }}" alt="Uploaded Image">
+                </div>
+            {% endif %}
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Color</th>
+                            <th>Name</th>
+                            <th>HEX Code</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for color in color_info %}
+                        <tr>
+                            <td style="background-color: {{ color.hex }};"></td>
+                            <td>{{ color.name }}</td>
+                            <td>{{ color.hex }}</td>
+                            <td>{{ color.count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <p class="foot-l">&copy; Created October 2024</p>
+            <p class="foot-r">Ellie Winer Python </p>
+        </div>
+    </footer>
+</body>
+</html>

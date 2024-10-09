@@ -1,0 +1,5 @@
+Flask==2.3.2
+numpy==2.1.2
+Pillow==10.0.1
+webcolors==24.8.0
+gunicorn
